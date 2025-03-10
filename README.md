@@ -1,0 +1,1 @@
+# Ajim1106-C-Mini-Project
