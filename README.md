@@ -1,5 +1,4 @@
 for stranger :- check code before run 
-
 #include<iostream>
 #include <string>
 using namespace std;
@@ -10,7 +9,6 @@ private:
     string genre;
     float rating;
     float price;
-
 public:
     // Constructor
     Movie(string t = "", string g = "", float r = 0.0, float p = 0.0) {
