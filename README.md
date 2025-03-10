@@ -1,11 +1,7 @@
-// Ajim1106-C-Mini-Project
-
-// see update movie func before running code 
-
+for stranger :- check code before run 
 
 #include<iostream>
 #include <string>
-
 using namespace std;
 
 class Movie {
@@ -25,53 +21,52 @@ public:
     }
 
     // Setters
-    void setTitle(string t){
-    	title = t;
-	}
-	   
+    void setTitle(string t) {
+        title = t;
+    }
+
     void setGenre(string g) {
-	 genre = g; 
-	 }
-	 
+        genre = g;
+    }
+
     void setRating(float r) {
-	 rating = r; 
-	 }
-	 
+        rating = r;
+    }
+
     void setPrice(float p) {
-	 price = p; 
-	 }
+        price = p;
+    }
 
     // Getters
-    string getTitle() { 
-	return title;
-	 }
-	 
-    string getGenre() { 
-	return genre; 
-	}
-	
-    float getRating() { 
-	return rating;
-	 }
-	 
+    string getTitle() {
+        return title;
+    }
+
+    string getGenre() {
+        return genre;
+    }
+
+    float getRating() {
+        return rating;
+    }
+
     float getPrice() {
-	 return price; 
-	 }
+        return price;
+    }
 
     // Display Movie Info
     void displayMovie() {
-        cout << "Title: " << title <<endl;
+        cout << "Title: " << title << endl;
         cout << "Genre: " << genre << endl;
         cout << "Rating: " << rating << endl;
-        cout << "Price: $" << price << endl;
+        cout << "Price: Rs" << price << endl;
     }
 };
-
 
 // 2nd class 
 class MovieBookingSystem {
 private:
-    Movie movies[5]; //max enter 5 movies 
+    Movie movies[5]; // Max enter 5 movies 
     int movieCount;
 
 public:
@@ -86,15 +81,16 @@ public:
             string title, genre;
             float rating, price;
 
-            cout << "Enter Movie Title: " <<endl;
+            cout << "Enter Movie Title: " << endl;
+            cin.ignore(); // Clear input buffer before getline
             getline(cin, title);
-            
+
             cout << "Enter Movie Genre: ";
             getline(cin, genre);
-            
+
             cout << "Enter Movie Rating: ";
             cin >> rating;
-            
+
             cout << "Enter Movie Price: ";
             cin >> price;
 
@@ -102,8 +98,7 @@ public:
             movies[movieCount] = Movie(title, genre, rating, price);
             movieCount++;
             cout << "Movie added successfully!" << endl;
-        } 
-		else {
+        } else {
             cout << "Cannot add more movies. Limit reached!" << endl;
         }
     }
@@ -121,75 +116,6 @@ public:
         }
     }
 
-    // Update: Update an existing movie by title
-    
-    /* void updateMovie() {
-        string title;
-        cout << "Enter the title of the movie you want to update: ";
-        cin.ignore();
-        getline(cin, title);
-
-        bool found = false;
-        for (int i = 0; i < movieCount; i++) {
-            if (movies[i].getTitle() == title) {
-                found = true;
-
-                string newTitle, newGenre;
-                float newRating, newPrice;
-
-                cout << "Enter new Title: ";
-                getline(cin, newTitle);
-                cout << "Enter new Genre: ";
-                getline(cin, newGenre);
-                cout << "Enter new Rating: ";
-                cin >> newRating;
-                cout << "Enter new Price: ";
-                cin >> newPrice;
-
-                movies[i].setTitle(newTitle);
-                movies[i].setGenre(newGenre);
-                movies[i].setRating(newRating);
-                movies[i].setPrice(newPrice);
-
-                cout << "Movie updated successfully!" << endl;
-                break;
-            }
-        }
-
-        if (!found) {
-            cout << "Movie with the given title not found!" << endl;
-        }
-    }
-
-    // Delete: Delete a movie by title
-    void deleteMovie() {
-        string title;
-        cout << "Enter the title of the movie you want to delete: ";
-        cin.ignore();
-        getline(cin, title);
-
-        bool found = false;
-        for (int i = 0; i < movieCount; i++) {
-            if (movies[i].getTitle() == title) {
-                found = true;
-
-                // Shift all movies after the deleted movie to the left
-                for (int j = i; j < movieCount - 1; j++) {
-                    movies[j] = movies[j + 1];
-                }
-
-                movieCount--;
-                cout << "Movie deleted successfully!" << endl;
-                break;
-            }
-        }
-
-        if (!found) {
-            cout << "Movie with the given title not found!" << endl;
-        }
-    }
-*/
-
     // Menu to interact with the system
     void showMenu() {
         int choice;
@@ -197,9 +123,8 @@ public:
             cout << "\nMovie Booking System Menu:\n"
                  << "1. Add Movie\n"
                  << "2. View Movies\n"
-//                 << "3. Update Movie\n"
-                 << "4. Delete Movie\n"
-                 << "5. Exit\n"
+                 << "3. Delete Movie\n"
+                 << "4. Exit\n"
                  << "Enter your choice: ";
             cin >> choice;
 
@@ -211,28 +136,21 @@ public:
                     viewMovies();
                     break;
                 case 3:
-                    updateMovie();
+                    // deleteMovie();  // Not implemented
                     break;
                 case 4:
-                    deleteMovie();
-                    break;
-                case 5:
                     cout << "Exiting the system." << endl;
                     break;
                 default:
                     cout << "Invalid choice. Please try again." << endl;
             }
-        } while (choice != 5);
+        } while (choice != 4);  // Fixed the while loop condition
     }
 };
 
-int main(){
-	
-	MovieBookingSystem system;
+int main() {
+    MovieBookingSystem system;
     system.showMenu();
-    
+
     return 0;
 }
-
-
-
