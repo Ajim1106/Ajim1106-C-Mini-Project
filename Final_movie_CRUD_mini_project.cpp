@@ -90,7 +90,7 @@ public:
             cout << "Enter Movie Streaming option: ";
             cin >> streaming_option;
 
-            // Create the Movie object and add it to the array
+            // Created the Movie object and add it to the array
             movies[movieCount] = Movie(title, genre, rating, streaming_option);
             movieCount++;
             cout << "Movie added successfully!" << endl;
@@ -98,6 +98,40 @@ public:
             cout << "Cannot add more movies. Limit reached!" << endl;
         }
     }
+    
+    // delete movie func
+     void deleteMovie() {
+    if (movieCount == 0) {
+        cout << "No Movie available to delete!" << endl;
+        return;
+    }
+
+    string nameToDelete;
+    cout << "Enter the name of the Movie to delete: ";
+	cin>>nameToDelete;
+
+    // Search for the movie
+    int index = -1;
+    for (int i = 0; i < movieCount; i++) {
+        if (movies[i].getTitle() == nameToDelete) {
+            index = i;
+            break;
+        }
+    }
+
+    if (index == -1) {
+        cout << "Movie not found!" << endl;
+        return;
+    }
+
+    // transfer the remaining Movie to fill the gap
+    for (int i = 0; i < movieCount - 1; i++) {
+        movies[i] = movies[i + 1];
+    }
+
+    movieCount--; // Decrement the count of movie
+    cout << "Movie deleted successfully!" << endl;
+}
 
     // Read: View all movies
     void viewMovies() {
@@ -107,7 +141,7 @@ public:
         }
 
         for (int i = 0; i < movieCount; i++) {
-            cout << "\nMovie " << i + 1 << " details:" << endl;
+            cout << "\n Movie " << i + 1 << " details:" << endl;
             movies[i].displayMovie();
         }
     }
@@ -116,7 +150,7 @@ public:
     void showMenu() {
         int choice;
         do {
-            cout << "\nMovie Booking System Menu:\n"
+            cout << "\n Movie Booking System Menu:\n"
                  << "1. Add Movie\n"
                  << "2. View Movies\n"
                  << "3. Delete Movie\n"
@@ -132,7 +166,7 @@ public:
                     viewMovies();
                     break;
                 case 3:
-//                     deleteMovie();  
+                    deleteMovie();  
                     break;
                 case 4:
                     cout << "Exiting the system." << endl;
@@ -140,7 +174,7 @@ public:
                 default:
                     cout << "Invalid choice. Please try again." << endl;
             }
-        } while (choice != 4);  // Fixed the while loop condition
+        } while (choice != 4); 
     }
 };
 
@@ -150,4 +184,3 @@ int main() {
 
     return 0;
 }
-
